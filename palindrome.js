@@ -3,6 +3,7 @@
 // before running the program run npm install prompt-sync
 
 var prompt = require('prompt-sync')();      //required for prompt method to work
+var retryInput;
 
 function palindromeChecker(){
     var wordInput = prompt('Enter a string: ');
@@ -31,10 +32,10 @@ function palindromeChecker(){
 // calls palindromeChecker method again based on whether user response to resetPrompt() is yes or no
 //otherwise, remprompt. ask user if they want to retry again.
 function resetOptions(retryInput) {
-    if ("Yes" || "yes" || "y" || "Y") {
-        palindromeChecker()
-    } else if ("No" || "no" || "n" || "N") {
-        var retryInput = prompt("Have a nice day! ");
+    if (retryInput === 'Yes' || retryInput === 'yes' || retryInput === 'y' || retryInput === 'Y') {
+        palindromeChecker();
+    } else if (retryInput === 'No' || retryInput === 'no' || retryInput === 'n' || retryInput === 'N') {
+        console.log("Have a nice day! ");
     } else {
         resetPrompt();
     }
@@ -43,7 +44,7 @@ function resetOptions(retryInput) {
 //prompts user to reset
 function resetPrompt() {
     var retryInput = prompt("Would you like to retry? (Y/N) ");
-    resetOptions();
+    resetOptions(retryInput);
 }
 
 palindromeChecker();
